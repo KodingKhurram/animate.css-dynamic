@@ -13,7 +13,7 @@
 Documentation is included in demo site itself.
 
 <h2> Version and release </h2>
-<a href="https://github.com/KodingKhurram/animate.css-dynamic/tree/main/1.1.2">1.1.2</a> {latest} {initial}
+<a href="https://github.com/KodingKhurram/animate.css-dynamic/tree/v1.1.3/">1.1.3</a> {latest} {initial}
 
 <h2> License </h2>
 Animate.css-Dynamic is licensed under MIT license (<a href="https://opensource.org/licenses/MIT">https://opensource.org/licenses/MIT</a>)
