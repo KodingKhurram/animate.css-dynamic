@@ -6,7 +6,7 @@
 
 <h2> Demo and working </h2>
 <span> Demo and working of Animate.css-Dynamic is here...</span><br/>
-<a href="http://animate-dynamic.tk" target="_blank"> Primary link </a> <br/>
+<a href="https://animate-dynamic.ga" target="_blank"> Primary link </a> <br/>
 <a href="https://animate-dynamic.herokuapp.com" target="_blank"> Secondary link </a> <br/>
 
 <h2> Documentation </h2>
