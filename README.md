@@ -10,11 +10,29 @@
 <a href="https://animate-dynamic.herokuapp.com" target="_blank"> Secondary link </a> <br/>
 
 <h2> Documentation </h2>
-Documentation is included in demo site itself.
+ => Installation
+<pre>
+    &lt;head>
+      &lt;link
+        rel = "stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+      />
+      <script
+        src = "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+      </script>
+      <script
+        src = "https://cdn.jsdelivr.net/gh/KodingKhurram/animate.css-dynamic@main/animate.min.js">
+      </script>
+    &lt;/head>
+</pre>
+
+Documentation regarding usage is included in demo site itself.
 
 <h2> Version and release </h2>
-<a href="https://github.com/KodingKhurram/animate.css-dynamic/tree/v1.1.3/">v1.1.3</a> {initial}
-<a href="https://github.com/KodingKhurram/animate.css-dynamic/tree/v2.6.1/">v2.6.1</a> {latest}
+<ul>
+  <li><a href="https://github.com/KodingKhurram/animate.css-dynamic/tree/v1.1.3/">v1.1.3</a> {initial}</li>
+  <li><a href="https://github.com/KodingKhurram/animate.css-dynamic/tree/v2.6.1/">v2.6.1</a> {latest}</li>
+</ul>
 
 <h2> License </h2>
 Animate.css-Dynamic is licensed under MIT license (<a href="https://opensource.org/licenses/MIT">https://opensource.org/licenses/MIT</a>)
