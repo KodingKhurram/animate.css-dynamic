@@ -31,7 +31,8 @@ Documentation regarding usage is included in demo site itself.
 <h2> Version and release </h2>
 <ul>
   <li><a href="https://github.com/KodingKhurram/animate.css-dynamic/tree/v1.1.3/">v1.1.3</a> {initial}</li>
-  <li><a href="https://github.com/KodingKhurram/animate.css-dynamic/tree/v2.6.1/">v2.6.1</a> {latest}</li>
+  <li><a href="https://github.com/KodingKhurram/animate.css-dynamic/tree/v2.6.1/">v2.6.1</a></li>
+  <li><a href="https://github.com/KodingKhurram/animate.css-dynamic/tree/v2.9.2/">v2.9.2</a> {latest}</li>
 </ul>
 
 <h2> License </h2>

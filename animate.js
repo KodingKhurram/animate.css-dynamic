@@ -1,6 +1,6 @@
 /*
- * animate.js - https://animate-dynamic.ga/
- * Version - v2.6.1
+ * animate.js - animate-dynamic.ga
+ * Version - v2.9.2
  * Licensed under the MIT license - https://opensource.org/licenses/MIT
 
  * Copyright (c) 2021 Mohammed Khurram (KodingKhurram)
@@ -14,7 +14,8 @@ $(window).on("load", function() {
     }
   });
   view_Animations();
-  click_hover_Animations();
+  click_Animations();
+  hover_Animations();
   inner_Animations();
 });
 
@@ -25,110 +26,157 @@ $(window).scroll(function() {
 
 //On KeyPress
 $(document).keyup(function(e){
-  key_animations(e);
+  key_Animations(e);
 });
 
 /* -----Function definitions----- */
 //view animations
 function view_Animations(){
   //Ordinary animations
-  $("*[class*='ani_']").each(function() {
+  $("*[class*='ani_']:not([class*='aniUtil_onClick']):not([class*='aniUtil_onMouse']):not([class*='aniUtil_onKey']):not([class*='aniUtil_disabled'])").each(function() {
     var ani_classes = get_aniClasses(this);
 
     //Check visibility
-    if( ((!$(this).hasClass("aniUtil_onClick")) && (!$(this).hasClass("aniUtil_onMouse")) && (!$(this).is('[class*="aniUtil_onKey"]')) && (!$(this).hasClass("aniUtil_disabled"))) ){
-      if (isScrolledIntoView(this) === true ) {
-        if(!$(this).hasClass("aniUtil_animating") && !$(this).hasClass("animate__animated")){
-          if($(this).hasClass("aniUtil_dramatic")){
-            $(this).css("opacity", 100);
-          }
-          $(this).addClass("aniUtil_animating");
-          $(this).addClass(ani_classes);
-          this.addEventListener("animationend", () => {
-            $(this).removeClass("aniUtil_animating");
-          });
+    if (isScrolledIntoView(this) === true ) {
+      if(!$(this).hasClass("aniUtil_animating") && !$(this).hasClass("animate__animated")){
+        if($(this).hasClass("aniUtil_dramatic")){
+          $(this).css("opacity", 100);
         }
+        $(this).addClass("aniUtil_animating");
+        $(this).addClass(ani_classes);
+        this.addEventListener("animationend", () => {
+          $(this).removeClass("aniUtil_animating");
+        });
       }
-      else{
-        if( $(this).hasClass("aniUtil_active") && !$(this).hasClass("aniUtil_animating")){
-          if($(this).hasClass("aniUtil_dramatic")){
-            $(this).css("opacity", 0);
-          }
-          $(this).removeClass(ani_classes);
+    }
+    else{
+      if( $(this).hasClass("aniUtil_active") && !$(this).hasClass("aniUtil_animating")){
+        if($(this).hasClass("aniUtil_dramatic")){
+          $(this).css("opacity", 0);
         }
+        $(this).removeClass(ani_classes);
       }
     }
   });
 
   //Custom Animations
   //aniCus_tubeLight
-  $("*[class*='aniCus_tubeLight']").each(function() {
+  $("*[class*='aniCus_tubeLight']:not([class*='aniUtil_onClick']):not([class*='aniUtil_onMouse']):not([class*='aniUtil_onKey']):not([class*='aniUtil_disabled'])").each(function() {
     //Check visibility
-    if( ((!$(this).hasClass("aniUtil_onClick")) && (!$(this).hasClass("aniUtil_onMouse")) && (!$(this).is('[class*="aniUtil_onKey"]')) && (!$(this).hasClass("aniUtil_disabled"))) ){
-      if (isScrolledIntoView(this) === true ) {
-        if(!$(this).hasClass("aniUtil_animating") && !$(this).hasClass("animate__animated")){
-          aniCus_tubeLight(this, 1);
-        }
+    if (isScrolledIntoView(this) === true ) {
+      if(!$(this).hasClass("aniUtil_animating") && !$(this).hasClass("animate__animated")){
+        aniCus_tubeLight(this, 1);
       }
-      else{
-        if( $(this).hasClass("aniUtil_active") && !$(this).hasClass("aniUtil_animating")){
-          if($(this).hasClass("aniUtil_dramatic")){
-            $(this).css("opacity", 0);
-          }
-          $(this).removeClass("animate__animated animate__fadeIn animate__slower");
+    }
+    else{
+      if( $(this).hasClass("aniUtil_active") && !$(this).hasClass("aniUtil_animating")){
+        if($(this).hasClass("aniUtil_dramatic")){
+          $(this).css("opacity", 0);
         }
+        $(this).removeClass("animate__animated animate__fadeIn animate__slower");
       }
     }
   });
 
   //aniCus_OutIn
-  $("*[class*='aniCus_OutIn']").each(function() {
+  $("*[class*='aniCus_OutIn']:not([class*='aniUtil_onClick']):not([class*='aniUtil_onMouse']):not([class*='aniUtil_onKey']):not([class*='aniUtil_disabled'])").each(function() {
     var outInClasses = get_aniOutInClasses(this);
     var aniOut_classes = outInClasses[0];
     var aniIn_classes = outInClasses[1];
     //Check visibility
-    if( ((!$(this).hasClass("aniUtil_onClick")) && (!$(this).hasClass("aniUtil_onMouse")) && (!$(this).is('[class*="aniUtil_onKey"]')) && (!$(this).hasClass("aniUtil_disabled"))) ){
-      if (isScrolledIntoView(this) === true ) {
-        if(!$(this).hasClass("aniUtil_animating") && !$(this).hasClass("animate__animated")){
-          aniCus_OutIn(this, 1, aniOut_classes, aniIn_classes);
-        }
+    if (isScrolledIntoView(this) === true ) {
+      if(!$(this).hasClass("aniUtil_animating") && !$(this).hasClass("animate__animated")){
+        aniCus_OutIn(this, 1, aniOut_classes, aniIn_classes);
       }
-      else{
-        if( $(this).hasClass("aniUtil_active") && !$(this).hasClass("aniUtil_animating")){
-          if($(this).hasClass("aniUtil_dramatic")){
-            $(this).css("opacity", 0);
-          }
-          $(this).removeClass(aniIn_classes);
+    }
+    else{
+      if( $(this).hasClass("aniUtil_active") && !$(this).hasClass("aniUtil_animating")){
+        if($(this).hasClass("aniUtil_dramatic")){
+          $(this).css("opacity", 0);
         }
+        $(this).removeClass(aniIn_classes);
       }
     }
   });
 }
 //click and hover animations
-function click_hover_Animations(){
+function click_Animations(){
   //Ordinary animations
-  $("*[class*='ani_']").each(function() {
+  $("*[class*='ani_'][class*='aniUtil_onClick']:not([class*='aniUtil_disabled'])").each(function() {
     var ani_classes = get_aniClasses(this);
 
     //on Click
     if($(this).hasClass("aniUtil_onClick")){
       $(this).click(function(){
-        if(!$(this).hasClass("aniUtil_disabled")){
-          if($(this).hasClass("aniUtil_dramatic")){
-            $(this).css("opacity", 100);
-          }
-          $(this).addClass(ani_classes);
-          if($(this).hasClass("aniUtil_active")){
-            this.addEventListener('animationend', () => {
-              $(this).removeClass(ani_classes);
-            });
-          }
-          else{
-            $(this).removeClass("aniUtil_onClick");
-          }
+        if($(this).hasClass("aniUtil_dramatic")){
+          $(this).css("opacity", 100);
+        }
+        $(this).addClass(ani_classes);
+        if($(this).hasClass("aniUtil_active")){
+          this.addEventListener('animationend', () => {
+            $(this).removeClass(ani_classes);
+          });
+        }
+        else{
+          $(this).removeClass("aniUtil_onClick");
         }
       });
     }
+  });
+
+  //Custom Animations
+  //aniCus_clickDisabled
+  //on Click
+  $("*[class*='aniCus_clickDisabled']:not([class*='aniUtil_disabled'])").each(function() {
+    $(this).click(function(){
+      if($(this).hasClass("aniCus_clickDisabled") && (!$(this).hasClass("aniUtil_disabled"))){
+        $(this).attr('style', 'border: 2px solid red !important');
+        $(this).addClass("animate__animated animate__shakeX animate__faster");
+        this.addEventListener('animationend', () => {
+          $(this).css({"border": "revert"});
+          $(this).removeClass("animate__animated animate__shakeX animate__faster");
+        });
+      }
+    });
+  });
+
+  //aniCus_tubeLight
+  $("*[class*='aniCus_tubeLight'][class*='aniUtil_onClick']:not([class*='aniUtil_disabled'])").each(function() {
+    //on Click
+    if($(this).hasClass("aniUtil_onClick")){
+      if(!$(this).hasClass("aniUtil_animating")){
+        $(this).click(function(){
+          if(!$(this).hasClass("aniUtil_disabled")){
+            aniCus_tubeLight(this, 2);
+          }
+        });
+      }
+    }
+  });
+
+  //aniCus_OutIn
+  $("*[class*='aniCus_OutIn'][class*='aniUtil_onClick']:not([class*='aniUtil_disabled'])").each(function() {
+    var outInClasses = get_aniOutInClasses(this);
+    var aniOut_classes = outInClasses[0];
+    var aniIn_classes = outInClasses[1];
+    //on Click
+    if($(this).hasClass("aniUtil_onClick")){
+      if(!$(this).hasClass("aniUtil_animating")){
+        $(this).click(function(){
+          if(!$(this).hasClass("aniUtil_disabled")){
+            aniCus_OutIn(this, 2, aniOut_classes, aniIn_classes);
+          }
+        });
+      }
+    }
+  });
+}
+
+//hover animations
+function hover_Animations(){
+  //Ordinary animations
+  $("*[class*='ani_'][class*='aniUtil_onMouse']:not([class*='aniUtil_disabled'])").each(function() {
+    var ani_classes = get_aniClasses(this);
 
     //On mouse over
     if($(this).hasClass("aniUtil_onMouse")){
@@ -152,34 +200,9 @@ function click_hover_Animations(){
   });
 
   //Custom Animations
-  //aniCus_clickDisabled
-  //on Click
-  $("*[class*='aniCus_clickDisabled']").each(function() {
-    $(this).click(function(){
-      if($(this).hasClass("aniCus_clickDisabled") && (!$(this).hasClass("aniUtil_disabled"))){
-        $(this).attr('style', 'border: 2px solid red !important');
-        $(this).addClass("animate__animated animate__shakeX animate__faster");
-        this.addEventListener('animationend', () => {
-          $(this).css({"border": "revert"});
-          $(this).removeClass("animate__animated animate__shakeX animate__faster");
-        });
-      }
-    });
-  });
 
   //aniCus_tubeLight
-  $("*[class*='aniCus_tubeLight']").each(function() {
-    //on Click
-    if($(this).hasClass("aniUtil_onClick")){
-      if(!$(this).hasClass("aniUtil_animating")){
-        $(this).click(function(){
-          if(!$(this).hasClass("aniUtil_disabled")){
-            aniCus_tubeLight(this, 2);
-          }
-        });
-      }
-    }
-
+  $("*[class*='aniCus_tubeLight'][class*='aniUtil_onMouse']:not([class*='aniUtil_disabled'])").each(function() {
     //On mouse over
     if($(this).hasClass("aniUtil_onMouse")){
       if(!$(this).hasClass("aniUtil_animating")){
@@ -193,21 +216,10 @@ function click_hover_Animations(){
   });
 
   //aniCus_OutIn
-  $("*[class*='aniCus_OutIn']").each(function() {
+  $("*[class*='aniCus_OutIn'][class*='aniUtil_onMouse']:not([class*='aniUtil_disabled'])").each(function() {
     var outInClasses = get_aniOutInClasses(this);
     var aniOut_classes = outInClasses[0];
     var aniIn_classes = outInClasses[1];
-    //on Click
-    if($(this).hasClass("aniUtil_onClick")){
-      if(!$(this).hasClass("aniUtil_animating")){
-        $(this).click(function(){
-          if(!$(this).hasClass("aniUtil_disabled")){
-            aniCus_OutIn(this, 2, aniOut_classes, aniIn_classes);
-          }
-        });
-      }
-    }
-
     //On mouse over
     if($(this).hasClass("aniUtil_onMouse")){
       if(!$(this).hasClass("aniUtil_animating")){
@@ -226,7 +238,7 @@ function inner_Animations(){
   $(".aniUtil_scrollDiv").each(function(){
     $(this).scroll(function() {
       var parent = this;
-      $("*[class*='aniIn_']").each(function() {
+      $("*[class*='aniIn_']:not([class*='aniUtil_onClick']):not([class*='aniUtil_onMouse']):not([class*='aniUtil_onKey']):not([class*='aniUtil_disabled'])").each(function() {
         var ani_classes = "";
         var classname = this.classList;
         $(classname).each(function(){
@@ -237,20 +249,18 @@ function inner_Animations(){
         });
 
         //Check visibility
-        if( ((!$(this).hasClass("aniUtil_onClick")) && (!$(this).hasClass("aniUtil_onMouse")) && (!$(this).is('[class*="aniUtil_onKey"]')) && (!$(this).hasClass("aniUtil_disabled"))) ){
-          if (isScrolledIntoDivView(this, parent) === true) {
-            if($(this).hasClass("aniUtil_dramatic")){
-              $(this).css("opacity", 100);
-            }
-            $(this).addClass(ani_classes);
+        if (isScrolledIntoDivView(this, parent) === true) {
+          if($(this).hasClass("aniUtil_dramatic")){
+            $(this).css("opacity", 100);
           }
-          else{
-            if( $(this).hasClass("aniUtil_active") ){
-              if($(this).hasClass("aniUtil_dramatic")){
-                $(this).css("opacity", 0);
-              }
-              $(this).removeClass(ani_classes);
+          $(this).addClass(ani_classes);
+        }
+        else{
+          if( $(this).hasClass("aniUtil_active") ){
+            if($(this).hasClass("aniUtil_dramatic")){
+              $(this).css("opacity", 0);
             }
+            $(this).removeClass(ani_classes);
           }
         }
       });
@@ -258,13 +268,13 @@ function inner_Animations(){
   });
 }
 //key press animations
-function key_animations(e){
+function key_Animations(e){
   //Ordinary animations
-  $("*[class*='ani_']").each(function() {
+  $("*[class*='ani_']:not([class*='aniUtil_disabled'])").each(function() {
     var ani_classes = get_aniClasses(this);
 
     //When key is pressed
-    if($(this).is('[class*="aniUtil_onKey"]') && (!$(this).hasClass("aniUtil_disabled"))){
+    if($(this).is('[class*="aniUtil_onKey"]')){
       var elem = this;
       var key = "";
       var classname = this.classList;
@@ -293,9 +303,9 @@ function key_animations(e){
 
   //Custom animations
   //aniCus_tubeLight
-  $("*[class*='aniCus_tubeLight']").each(function() {
+  $("*[class*='aniCus_tubeLight']:not([class*='aniUtil_disabled'])").each(function() {
     //When key is pressed
-    if($(this).is('[class*="aniUtil_onKey"]') && (!$(this).hasClass("aniUtil_disabled"))){
+    if($(this).is('[class*="aniUtil_onKey"]')){
       var elem = this;
       var key = "";
       var classname = this.classList;
@@ -312,12 +322,12 @@ function key_animations(e){
   });
 
   //aniCus_OutIn
-  $("*[class*='aniCus_OutIn']").each(function() {
+  $("*[class*='aniCus_OutIn']:not([class*='aniUtil_disabled'])").each(function() {
     var outInClasses = get_aniOutInClasses(this);
     var aniOut_classes = outInClasses[0];
     var aniIn_classes = outInClasses[1];
     //When key is pressed
-    if($(this).is('[class*="aniUtil_onKey"]') && (!$(this).hasClass("aniUtil_disabled"))){
+    if($(this).is('[class*="aniUtil_onKey"]')){
       var elem = this;
       var key = "";
       var classname = this.classList;
@@ -363,13 +373,11 @@ function get_aniOutInClasses(elem){
 
 //Check if element is scrolled into view
 function isScrolledIntoView(elem) {
-  var docViewTop = $(window).scrollTop();
-  var docViewBottom = docViewTop + $(window).height();
-
-  var elemTop = $(elem).offset().top;
-  var elemBottom = elemTop + $(elem).height();
-
-  return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+  var rect = elem.getBoundingClientRect();
+  var elemTop = rect.top;
+  var elemBottom = rect.bottom;
+  //Completely visible
+  return ((elemTop >= 0) && (elemBottom <= window.innerHeight));
 }
 
 //Check if element is scrolled into division view
@@ -404,7 +412,6 @@ function aniCus_tubeLight(elem, type){
             $(elem).removeClass("animate__animated animate__flash animate__faster");
             $(elem).addClass("animate__animated animate__fadeIn animate__slower");
             elem.addEventListener('animationend', () => {
-              $(elem).removeClass("aniUtil_animating");
               if($(elem).hasClass("aniUtil_active")){
                 $(elem).removeClass("animate__animated animate__fadeIn animate__slower");
               }
@@ -416,6 +423,7 @@ function aniCus_tubeLight(elem, type){
           });
         });
       });
+      $(elem).removeClass("aniUtil_animating");
     }
   }
   //For ordinary animations
@@ -660,7 +668,8 @@ function aniUtil_animate(elem, ani_Class){
   }
   $(elem).addClass(ani_Class);
   view_Animations();
-  click_hover_Animations();
+  click_Animations();
+  hover_Animations();
 }
 
 //aniUtil_inanimate()
