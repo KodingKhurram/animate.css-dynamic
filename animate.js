@@ -1,6 +1,6 @@
 /*
  * animate.js - animate-dynamic.ga
- * Version - v2.9.2
+ * Version - v2.10.3
  * Licensed under the MIT license - https://opensource.org/licenses/MIT
 
  * Copyright (c) 2021 Mohammed Khurram (KodingKhurram)
@@ -108,17 +108,19 @@ function click_Animations(){
     //on Click
     if($(this).hasClass("aniUtil_onClick")){
       $(this).click(function(){
-        if($(this).hasClass("aniUtil_dramatic")){
-          $(this).css("opacity", 100);
-        }
-        $(this).addClass(ani_classes);
-        if($(this).hasClass("aniUtil_active")){
-          this.addEventListener('animationend', () => {
-            $(this).removeClass(ani_classes);
-          });
-        }
-        else{
-          $(this).removeClass("aniUtil_onClick");
+        if(!$(this).hasClass("aniUtil_disabled")){
+          if($(this).hasClass("aniUtil_dramatic")){
+            $(this).css("opacity", 100);
+          }
+          $(this).addClass(ani_classes);
+          if($(this).hasClass("aniUtil_active")){
+            this.addEventListener('animationend', () => {
+              $(this).removeClass(ani_classes);
+            });
+          }
+          else{
+            $(this).removeClass("aniUtil_onClick");
+          }
         }
       });
     }
@@ -129,7 +131,7 @@ function click_Animations(){
   //on Click
   $("*[class*='aniCus_clickDisabled']:not([class*='aniUtil_disabled'])").each(function() {
     $(this).click(function(){
-      if($(this).hasClass("aniCus_clickDisabled") && (!$(this).hasClass("aniUtil_disabled"))){
+      if(!$(this).hasClass("aniUtil_disabled")){
         $(this).attr('style', 'border: 2px solid red !important');
         $(this).addClass("animate__animated animate__shakeX animate__faster");
         this.addEventListener('animationend', () => {
