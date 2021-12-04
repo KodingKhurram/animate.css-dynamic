@@ -1,21 +1,23 @@
 /*
  * animate.js - animate-dynamic.ga
- * Version - v2.10.3
+ * Version - v2.13.5
  * Licensed under the MIT license - https://opensource.org/licenses/MIT
 
  * Copyright (c) 2021 Mohammed Khurram (KodingKhurram)
  */
 
 $(window).on("load", function() {
+  //aniCus_text initializaion
+  aniCus_text();
   //Dramatic animations, initialization
-  $(".aniUtil_dramatic").each(function() {
-    if(!$(this).hasClass("aniUtil_disabled") && !$(this).hasClass("animate__animated")){
-      $(this).css("opacity", 0);
-    }
-  });
+  aniUtil_dramatic();
+  //view animations initialization
   view_Animations();
+  //click animations initialization
   click_Animations();
+  //hover animation initialization
   hover_Animations();
+  //inner animations initializaion
   inner_Animations();
 });
 
@@ -30,20 +32,31 @@ $(document).keyup(function(e){
 });
 
 /* -----Function definitions----- */
+//aniUtil_dramatic
+function aniUtil_dramatic(){
+  //This function initializes element for dramatic animations
+  $(".aniUtil_dramatic").each(function() {
+    if(!$(this).hasClass("aniUtil_disabled") && !$(this).hasClass("animate__animated")){
+      $(this).css("opacity", 0);
+    }
+  });
+}
 //view animations
 function view_Animations(){
+  //This function initializes the scroll animations
   //Ordinary animations
   $("*[class*='ani_']:not([class*='aniUtil_onClick']):not([class*='aniUtil_onMouse']):not([class*='aniUtil_onKey']):not([class*='aniUtil_disabled'])").each(function() {
+    //Get the animation classes
     var ani_classes = get_aniClasses(this);
 
-    //Check visibility
+    //Check visibility then animate
     if (isScrolledIntoView(this) === true ) {
       if(!$(this).hasClass("aniUtil_animating") && !$(this).hasClass("animate__animated")){
         if($(this).hasClass("aniUtil_dramatic")){
           $(this).css("opacity", 100);
         }
-        $(this).addClass("aniUtil_animating");
         $(this).addClass(ani_classes);
+        $(this).addClass("aniUtil_animating");
         this.addEventListener("animationend", () => {
           $(this).removeClass("aniUtil_animating");
         });
@@ -62,7 +75,7 @@ function view_Animations(){
   //Custom Animations
   //aniCus_tubeLight
   $("*[class*='aniCus_tubeLight']:not([class*='aniUtil_onClick']):not([class*='aniUtil_onMouse']):not([class*='aniUtil_onKey']):not([class*='aniUtil_disabled'])").each(function() {
-    //Check visibility
+    //Check visibility then animate
     if (isScrolledIntoView(this) === true ) {
       if(!$(this).hasClass("aniUtil_animating") && !$(this).hasClass("animate__animated")){
         aniCus_tubeLight(this, 1);
@@ -80,10 +93,11 @@ function view_Animations(){
 
   //aniCus_OutIn
   $("*[class*='aniCus_OutIn']:not([class*='aniUtil_onClick']):not([class*='aniUtil_onMouse']):not([class*='aniUtil_onKey']):not([class*='aniUtil_disabled'])").each(function() {
+    //Get the animation classes
     var outInClasses = get_aniOutInClasses(this);
     var aniOut_classes = outInClasses[0];
     var aniIn_classes = outInClasses[1];
-    //Check visibility
+    //Check visibility then animate
     if (isScrolledIntoView(this) === true ) {
       if(!$(this).hasClass("aniUtil_animating") && !$(this).hasClass("animate__animated")){
         aniCus_OutIn(this, 1, aniOut_classes, aniIn_classes);
@@ -99,10 +113,12 @@ function view_Animations(){
     }
   });
 }
-//click and hover animations
+//click animations
 function click_Animations(){
+  //This function initializes the click animations
   //Ordinary animations
   $("*[class*='ani_'][class*='aniUtil_onClick']:not([class*='aniUtil_disabled'])").each(function() {
+    //Get the animation classes
     var ani_classes = get_aniClasses(this);
 
     //on Click
@@ -116,6 +132,9 @@ function click_Animations(){
           if($(this).hasClass("aniUtil_active")){
             this.addEventListener('animationend', () => {
               $(this).removeClass(ani_classes);
+              if($(this).hasClass("aniUtil_dramatic")){
+                $(this).css("opacity", 0);
+              }
             });
           }
           else{
@@ -158,6 +177,7 @@ function click_Animations(){
 
   //aniCus_OutIn
   $("*[class*='aniCus_OutIn'][class*='aniUtil_onClick']:not([class*='aniUtil_disabled'])").each(function() {
+    //Get the animation classes
     var outInClasses = get_aniOutInClasses(this);
     var aniOut_classes = outInClasses[0];
     var aniIn_classes = outInClasses[1];
@@ -176,8 +196,10 @@ function click_Animations(){
 
 //hover animations
 function hover_Animations(){
+  //This function initializes the mouse over animations
   //Ordinary animations
   $("*[class*='ani_'][class*='aniUtil_onMouse']:not([class*='aniUtil_disabled'])").each(function() {
+    //Get the animation classes
     var ani_classes = get_aniClasses(this);
 
     //On mouse over
@@ -191,6 +213,9 @@ function hover_Animations(){
           if($(this).hasClass("aniUtil_active")){
             this.addEventListener('animationend', () => {
               $(this).removeClass(ani_classes);
+              if($(this).hasClass("aniUtil_dramatic")){
+                $(this).css("opacity", 0);
+              }
             });
           }
           else{
@@ -202,7 +227,6 @@ function hover_Animations(){
   });
 
   //Custom Animations
-
   //aniCus_tubeLight
   $("*[class*='aniCus_tubeLight'][class*='aniUtil_onMouse']:not([class*='aniUtil_disabled'])").each(function() {
     //On mouse over
@@ -219,6 +243,7 @@ function hover_Animations(){
 
   //aniCus_OutIn
   $("*[class*='aniCus_OutIn'][class*='aniUtil_onMouse']:not([class*='aniUtil_disabled'])").each(function() {
+    //Get the animation classes
     var outInClasses = get_aniOutInClasses(this);
     var aniOut_classes = outInClasses[0];
     var aniIn_classes = outInClasses[1];
@@ -236,12 +261,13 @@ function hover_Animations(){
 }
 //inner animations for division scroll
 function inner_Animations(){
+  //This function initializes the inner animations for elements inside scrollable divisions
   //On scroll of Division
   $(".aniUtil_scrollDiv").each(function(){
     $(this).scroll(function() {
       var parent = this;
       $("*[class*='aniIn_']:not([class*='aniUtil_onClick']):not([class*='aniUtil_onMouse']):not([class*='aniUtil_onKey']):not([class*='aniUtil_disabled'])").each(function() {
-        var ani_classes = "";
+        var ani_classes = '';
         var classname = this.classList;
         $(classname).each(function(){
           if(this.match(/^aniIn_/)){
@@ -250,7 +276,7 @@ function inner_Animations(){
           }
         });
 
-        //Check visibility
+        //Check visibility then animate
         if (isScrolledIntoDivView(this, parent) === true) {
           if($(this).hasClass("aniUtil_dramatic")){
             $(this).css("opacity", 100);
@@ -271,83 +297,45 @@ function inner_Animations(){
 }
 //key press animations
 function key_Animations(e){
-  //Ordinary animations
-  $("*[class*='ani_']:not([class*='aniUtil_disabled'])").each(function() {
+  //This function is triggered on key up event and performance animation on desired element/s
+  var elem = "*[class*='aniUtil_onKey-"+e.code+"']:not([class*='aniUtil_disabled'])";
+  $(elem).each(function(){
+    //Ordinary animations
+    //Get the animation classes
     var ani_classes = get_aniClasses(this);
 
-    //When key is pressed
-    if($(this).is('[class*="aniUtil_onKey"]')){
-      var elem = this;
-      var key = "";
-      var classname = this.classList;
-      $(classname).each(function(){
-        if(this.match(/^aniUtil_onKey/)){
-          key = this.split("-")[1];
+    if($(this).hasClass("aniUtil_dramatic")){
+      $(this).css("opacity", 100);
+    }
+    $(this).addClass(ani_classes);
+    if($(this).hasClass("aniUtil_active")){
+      this.addEventListener('animationend', () => {
+        $(this).removeClass(ani_classes);
+        if($(this).hasClass("aniUtil_dramatic")){
+          $(this).css("opacity", 0);
         }
       });
-      //Match key
-      if(e.code == key){
-        if($(elem).hasClass("aniUtil_dramatic")){
-          $(elem).css("opacity", 100);
-        }
-        $(elem).addClass(ani_classes);
-        if($(elem).hasClass("aniUtil_active")){
-          elem.addEventListener('animationend', () => {
-            $(elem).removeClass(ani_classes);
-          });
-        }
-        else{
-          $(elem).removeClass("aniUtil_onKey");
-        }
-      }
     }
-  });
 
-  //Custom animations
-  //aniCus_tubeLight
-  $("*[class*='aniCus_tubeLight']:not([class*='aniUtil_disabled'])").each(function() {
-    //When key is pressed
-    if($(this).is('[class*="aniUtil_onKey"]')){
-      var elem = this;
-      var key = "";
-      var classname = this.classList;
-      $(classname).each(function(){
-        if(this.match(/^aniUtil_onKey/)){
-          key = this.split("-")[1];
-        }
-      });
-      //Match Key
-      if(e.code == key){
-        aniCus_tubeLight(this, 4);
-      }
+    //Custom animations
+    //aniCus_tubeLight
+    if($(this).hasClass("aniCus_tubeLight")){
+      aniCus_tubeLight(this, 4);
     }
-  });
 
-  //aniCus_OutIn
-  $("*[class*='aniCus_OutIn']:not([class*='aniUtil_disabled'])").each(function() {
-    var outInClasses = get_aniOutInClasses(this);
-    var aniOut_classes = outInClasses[0];
-    var aniIn_classes = outInClasses[1];
-    //When key is pressed
-    if($(this).is('[class*="aniUtil_onKey"]')){
-      var elem = this;
-      var key = "";
-      var classname = this.classList;
-      $(classname).each(function(){
-        if(this.match(/^aniUtil_onKey/)){
-          key = this.split("-")[1];
-        }
-      });
-      //Match Key
-      if(e.code == key){
-        aniCus_OutIn(this, 4, aniOut_classes, aniIn_classes);
-      }
+    //aniCus_OutIn
+    if($(this).is('[class*="aniCus_OutIn"]')){
+      var outInClasses = get_aniOutInClasses(this);
+      var aniOut_classes = outInClasses[0];
+      var aniIn_classes = outInClasses[1];
+      aniCus_OutIn(this, 4, aniOut_classes, aniIn_classes);
     }
-  });
+  })
 }
 
 //get animation class
 function get_aniClasses(elem){
+  //This function returns the animate.css animation classes for the element
   var ani_classes = '';
   var classname = elem.classList;
   $(classname).each(function(){
@@ -361,6 +349,7 @@ function get_aniClasses(elem){
 
 //get out and in animation Classes
 function get_aniOutInClasses(elem){
+  //This function returns the animate.css animation classes for the element having custom animation aniCus_OutIn
   var aniOut_classes = '';
   var aniIn_classes = '';
   var classname = elem.classList;
@@ -375,6 +364,7 @@ function get_aniOutInClasses(elem){
 
 //Check if element is scrolled into view
 function isScrolledIntoView(elem) {
+  //This function tells whether the element is visible on view
   var rect = elem.getBoundingClientRect();
   var elemTop = rect.top;
   var elemBottom = rect.bottom;
@@ -384,26 +374,28 @@ function isScrolledIntoView(elem) {
 
 //Check if element is scrolled into division view
 function isScrolledIntoDivView(elem, parent) {
+  //This function tells whether the element inside some scrollable division is visible on view
   var parentTop = $(parent).offset().top;
   var parentBottom = parentTop + $(parent).height();
 
   var elemTop = $(elem).offset().top;
   var elemBottom = elemTop + $(elem).height();
-
+  //Completely visible
   return ((elemBottom <= parentBottom) && (elemTop >= parentTop));
 }
 
 //Custom animation function definitions
 //aniCus_tubeLight
 function aniCus_tubeLight(elem, type){
-  //For click, mouse, and key animations
+  //This function is for custom animation aniCus_tubeLight
+  //For click, mouse, and key press animations
   if( type  == 2 || type == 3 || type == 4){
     if(!$(elem).hasClass("animate__animated") && !$(elem).hasClass("aniUtil_animating")){
       if($(elem).hasClass("aniUtil_dramatic")){
         $(elem).css("opacity", 100);
       }
-      $(elem).addClass("aniUtil_animating");
       $(elem).addClass("animate__animated animate__flash animate__repeat-2 animate__faster");
+      $(elem).addClass("aniUtil_animating");
       elem.addEventListener('animationend', () => {
         $(elem).removeClass("animate__animated animate__flash animate__repeat-2 animate__faster");
         $(elem).addClass("animate__animated animate__fadeOut animate__slow");
@@ -434,8 +426,8 @@ function aniCus_tubeLight(elem, type){
       if($(elem).hasClass("aniUtil_dramatic")){
         $(elem).css("opacity", 100);
       }
-      $(elem).addClass("aniUtil_animating");
       $(elem).addClass("animate__animated animate__flash animate__repeat-2 animate__faster");
+      $(elem).addClass("aniUtil_animating");
       elem.addEventListener('animationend', () => {
         $(elem).removeClass("animate__animated animate__flash animate__repeat-2 animate__faster");
         $(elem).addClass("animate__animated animate__fadeOut animate__slow");
@@ -455,14 +447,15 @@ function aniCus_tubeLight(elem, type){
 
 //aniCus_OutIn
 function aniCus_OutIn(elem, type, aniOut_classes, aniIn_classes){
-  //For click, mouse, and key animations
+  //This function is for custom animation aniCus_OutIn
+  //For click, mouse, and key press animations
   if( type  == 2 || type == 3 || type == 4){
     if(!$(elem).hasClass("animate__animated") && !$(elem).hasClass("aniUtil_animating")){
       if($(elem).hasClass("aniUtil_dramatic")){
         $(elem).css("opacity", 100);
       }
-      $(elem).addClass("aniUtil_animating");
       $(elem).addClass(aniOut_classes);
+      $(elem).addClass("aniUtil_animating");
       elem.addEventListener('animationend', () => {
         $(elem).removeClass(aniOut_classes);
         $(elem).addClass(aniIn_classes);
@@ -485,8 +478,8 @@ function aniCus_OutIn(elem, type, aniOut_classes, aniIn_classes){
       if($(elem).hasClass("aniUtil_dramatic")){
         $(elem).css("opacity", 100);
       }
-      $(elem).addClass("aniUtil_animating");
       $(elem).addClass(aniOut_classes);
+      $(elem).addClass("aniUtil_animating");
       elem.addEventListener('animationend', () => {
         $(elem).removeClass(aniOut_classes);
         $(elem).addClass(aniIn_classes);
@@ -498,9 +491,56 @@ function aniCus_OutIn(elem, type, aniOut_classes, aniIn_classes){
   }
 }
 
+//aniCus_text
+function aniCus_text(){
+  //This function is for custom animation aniCus_text
+
+  $("*[class*='aniCus_text']").each(function(){
+    var textWrapper = this;
+    var ani_classes = '';
+    var classname = textWrapper.classList;
+    $(classname).each(function(){
+      if(this.match(/^aniCus_text/)){
+        var animation = this.split("-")[1];
+        ani_classes = "ani_"+animation;
+      }
+    });
+    //add utility classes for each letter
+    if($(this).hasClass("aniUtil_dramatic")) {
+      ani_classes = ani_classes+" aniUtil_dramatic";
+      $(this).removeClass("aniUtil_dramatic");
+    }
+    if($(this).hasClass("aniUtil_active")) ani_classes = ani_classes+" aniUtil_active";
+    if($(this).hasClass("aniUtil_onClick")) ani_classes = ani_classes+" aniUtil_onClick";
+    if($(this).hasClass("aniUtil_onMouse")) ani_classes = ani_classes+" aniUtil_onMouse";
+    //Wrap every letter in a span
+    textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, (match, offset) => `<span class='`+ani_classes+` aniUtil_letter-${offset}'>${match}</span>`);
+  })
+  //Finding animation delay for each letter
+  $("*[class*='aniUtil_letter']").each(function(){
+    var letter = this;
+    var delay = 0;
+    var classname = letter.classList;
+    $(classname).each(function(){
+      if(this.match(/^aniUtil_letter/)){
+        var offset = this.split("-")[1];
+        delay = parseInt(offset)/10;
+        delay = delay+"s";
+      }
+    });
+    //No delay for click and hover animations
+    if($(this).hasClass("aniUtil_onClick") || $(this).hasClass("aniUtil_onMouse")) delay= '';
+    //Declaring as inline block element, refer animate.css library gotchas
+    this.style.display="inline-block";
+    //Adding animation delay
+    this.style.animationDelay = delay;
+  })
+}
+
 /* -----Utility Functions----- */
 //aniUtil_disable()
 function aniUtil_disable(which){
+  //This function disables the animations on page
   //all animations
   if(which == "all"){
     $("*[class*='ani_']").each(function() {
@@ -573,6 +613,7 @@ function aniUtil_disable(which){
       $(this).addClass("aniUtil_disabled");
     });
   }
+  //all other
   else{
     var ani_Class = "ani_"+which;
     $("*[class*='"+ani_Class+"']").each(function() {
@@ -583,6 +624,7 @@ function aniUtil_disable(which){
 
 //aniUtil_enable()
 function aniUtil_enable(which){
+  //This function enable the animations on page
   //all animations
   if(which == "all"){
     $("*[class*='ani_']").each(function() {
@@ -655,6 +697,7 @@ function aniUtil_enable(which){
       $(this).removeClass("aniUtil_disabled");
     });
   }
+  //all other
   else{
     var ani_Class = "ani_"+which;
     $("*[class*='"+ani_Class+"']").each(function() {
@@ -665,6 +708,7 @@ function aniUtil_enable(which){
 
 //aniUtil_animate()
 function aniUtil_animate(elem, ani_Class){
+  //This function animates an element with the animations provided
   if($(elem).hasClass('aniUtil_disabled')){
     $(elem).removeClass('aniUtil_disabled');
   }
@@ -676,5 +720,6 @@ function aniUtil_animate(elem, ani_Class){
 
 //aniUtil_inanimate()
 function aniUtil_inanimate(elem){
+  //This function inanimates/disables the animation for a perticular element
   $(elem).addClass('aniUtil_disabled');
 }
