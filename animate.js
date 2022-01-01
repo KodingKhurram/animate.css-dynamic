@@ -1,6 +1,6 @@
 /*
  * animate.js - animate-dynamic.ga
- * Version - v2.13.5
+ * Version - v2.16.7
  * Licensed under the MIT license - https://opensource.org/licenses/MIT
 
  * Copyright (c) 2021 Mohammed Khurram (KodingKhurram)
@@ -36,6 +36,7 @@ $(document).keyup(function(e){
 function aniUtil_dramatic(){
   //This function initializes element for dramatic animations
   $(".aniUtil_dramatic").each(function() {
+    $(this).css("opacity", 100);
     if(!$(this).hasClass("aniUtil_disabled") && !$(this).hasClass("animate__animated")){
       $(this).css("opacity", 0);
     }
@@ -210,6 +211,27 @@ function hover_Animations(){
             $(this).css("opacity", 100);
           }
           $(this).addClass(ani_classes);
+          if($(this).hasClass("aniUtil_onMouseRepeat")){
+            //Add repeat class
+            $(this).addClass("animate__infinite");
+          }
+          else if($(this).hasClass("aniUtil_active")){
+            this.addEventListener('animationend', () => {
+              $(this).removeClass(ani_classes);
+              if($(this).hasClass("aniUtil_dramatic")){
+                $(this).css("opacity", 0);
+              }
+            });
+          }
+          else{
+            $(this).removeClass("aniUtil_onMouse");
+          }
+        }
+      });
+      $(this).mouseout(function(){
+        //functional requirement for aniUtil_onMouseRepeat
+        if($(this).hasClass("aniUtil_onMouseRepeat")){
+          $(this).removeClass("animate__infinite");
           if($(this).hasClass("aniUtil_active")){
             this.addEventListener('animationend', () => {
               $(this).removeClass(ani_classes);
@@ -220,6 +242,7 @@ function hover_Animations(){
           }
           else{
             $(this).removeClass("aniUtil_onMouse");
+            $(this).removeClass("aniUtil_onMouseRepeat");
           }
         }
       });
@@ -336,6 +359,7 @@ function key_Animations(e){
 //get animation class
 function get_aniClasses(elem){
   //This function returns the animate.css animation classes for the element
+  elem = $(elem)[0];
   var ani_classes = '';
   var classname = elem.classList;
   $(classname).each(function(){
@@ -620,6 +644,8 @@ function aniUtil_disable(which){
       $(this).addClass("aniUtil_disabled");
     });
   }
+  //Re-initializing dramatic animations
+  aniUtil_dramatic();
 }
 
 //aniUtil_enable()
@@ -704,6 +730,8 @@ function aniUtil_enable(which){
       $(this).removeClass("aniUtil_disabled");
     });
   }
+  //Re-initializing dramatic animations
+  aniUtil_dramatic();
 }
 
 //aniUtil_animate()
@@ -713,8 +741,11 @@ function aniUtil_animate(elem, ani_Class){
     $(elem).removeClass('aniUtil_disabled');
   }
   $(elem).addClass(ani_Class);
+  if(!$(elem).hasClass("aniUtil_onClick") && !$(elem).hasClass("aniUtil_onMouse"))
   view_Animations();
+  if($(elem).hasClass("aniUtil_onClick"))
   click_Animations();
+  if($(elem).hasClass("aniUtil_onMouse"))
   hover_Animations();
 }
 
@@ -722,4 +753,13 @@ function aniUtil_animate(elem, ani_Class){
 function aniUtil_inanimate(elem){
   //This function inanimates/disables the animation for a perticular element
   $(elem).addClass('aniUtil_disabled');
+}
+
+//aniUtil_reset()
+function aniUtil_reset(elem){
+  //This function resets the animation for a perticular element
+  var reset_classes = get_aniClasses(elem);
+  $(elem).removeClass(reset_classes);
+  if(!$(elem).hasClass("aniUtil_onMouse") && !$(elem).hasClass("aniUtil_onClick") && !$(elem).is('[class*="aniCus_onKey"]'))
+  view_Animations();
 }

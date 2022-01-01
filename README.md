@@ -10,20 +10,18 @@
 <span> <strong>Animate.css-Dynamic</strong> is an attempt to make Animate.css library dynamic in nature, in the sense, having control on animations, the basic idea is to animate the element when we want, and how we want, without need of changing anything in the source library <a href="https://animate.style/">{animate.css}</a>. </span>
 
 <h2> Installation </h2>
-<pre>
-    &lt;head>
-      &lt;link
-        rel = "stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-      />
-      <script
-        src = "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
-      </script>
-      <script
-        src = "https://cdn.jsdelivr.net/gh/KodingKhurram/animate.css-dynamic@main/animate.min.js">
-      </script>
-    &lt;/head>
-</pre>
+<pre>&lt;head>
+   &lt;link
+     rel = "stylesheet"
+     href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+   />
+   <script
+     src = "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+   </script>
+   <script
+     src = "https://cdn.jsdelivr.net/gh/KodingKhurram/animate.css-dynamic@main/animate.min.js">
+   </script>
+ &lt;/head></pre>
 
 <h2> Documentation and Demo </h2>
  <span> Documentation regarding usage and Demo is in the official <a href="https://animate-dynamic.ga" target="_blank"> website </a></span><br/>
@@ -35,7 +33,8 @@
   <li><a href="https://github.com/KodingKhurram/animate.css-dynamic/tree/v2.6.1/">v2.6.1</a></li>
   <li><a href="https://github.com/KodingKhurram/animate.css-dynamic/tree/v2.9.2/">v2.9.2</a></li>
   <li><a href="https://github.com/KodingKhurram/animate.css-dynamic/tree/v2.10.3/">v2.10.3</a></li>
-  <li><a href="https://github.com/KodingKhurram/animate.css-dynamic/tree/v2.13.5/">v2.13.5</a> {latest}</li>
+  <li><a href="https://github.com/KodingKhurram/animate.css-dynamic/tree/v2.13.5/">v2.13.5</a></li>
+  <li><a href="https://github.com/KodingKhurram/animate.css-dynamic/tree/v2.16.7/">v2.16.7</a> {latest}</li>
 </ul>
 
 <h2> License </h2>
