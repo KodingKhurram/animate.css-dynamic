@@ -6,6 +6,11 @@
  <a href="https://animate-dynamic.ga"><img src="https://img.shields.io/website.svg?down_color=red&down_message=down&style=for-the-badge&up_color=green&up_message=up&url=http%3A%2F%2Fshields.io"></a>
 </p>
 
+<p align="center">
+ <img src="https://animate-dynamic.herokuapp.com/img/gifs/animate-css-dynamic_GIF1.gif"><br/>
+ <img src="https://animate-dynamic.herokuapp.com/img/gifs/animate-css-dynamic_GIF2.gif">
+</p>
+
 <h2> Overview </h2>
 <span> <strong>Animate.css-Dynamic</strong> is an attempt to make Animate.css library dynamic in nature, in the sense, having control on animations, the basic idea is to animate the element when we want, and how we want, without need of changing anything in the source library <a href="https://animate.style/">{animate.css}</a>. </span>
 
