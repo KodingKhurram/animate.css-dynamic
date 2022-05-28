@@ -65,7 +65,7 @@ function view_Animations(){
     }
     else{
       if( $(this).hasClass("aniUtil_active") && !$(this).hasClass("aniUtil_animating")){
-        if($(this).hasClass("aniUtil_dramatic")){
+        if($(this).hasClass("aniUtil_dramatic") && isScrolledOutOfView(this)){
           $(this).css("opacity", 0);
         }
         $(this).removeClass(ani_classes);
@@ -394,6 +394,16 @@ function isScrolledIntoView(elem) {
   var elemBottom = rect.bottom;
   //Completely visible
   return ((elemTop >= 0) && (elemBottom <= window.innerHeight));
+}
+
+//Check if element is scrolled out of view
+function isScrolledOutOfView(elem) {
+  //This function tells whether the element is out of view
+  var rect = elem.getBoundingClientRect();
+  var elemTop = rect.top;
+  var elemBottom = rect.bottom;
+  //Completely out of view
+  return ((elemTop >= window.innerHeight) || (elemBottom <= 0));
 }
 
 //Check if element is scrolled into division view
