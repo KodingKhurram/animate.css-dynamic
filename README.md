@@ -39,7 +39,8 @@
   <li><a href="https://github.com/KodingKhurram/animate.css-dynamic/tree/v2.9.2/">v2.9.2</a></li>
   <li><a href="https://github.com/KodingKhurram/animate.css-dynamic/tree/v2.10.3/">v2.10.3</a></li>
   <li><a href="https://github.com/KodingKhurram/animate.css-dynamic/tree/v2.13.5/">v2.13.5</a></li>
-  <li><a href="https://github.com/KodingKhurram/animate.css-dynamic/tree/v2.16.7/">v2.16.7</a> {latest}</li>
+  <li><a href="https://github.com/KodingKhurram/animate.css-dynamic/tree/v2.16.7/">v2.16.7</a></li>
+  <li><a href="https://github.com/KodingKhurram/animate.css-dynamic/tree/v2.18.8/">v2.18.8</a> {latest}</li>
 </ul>
 
 <h2> License </h2>
