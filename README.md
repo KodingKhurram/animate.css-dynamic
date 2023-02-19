@@ -3,12 +3,12 @@
 <p align="center">
  <a href="https://github.com/KodingKhurram/animate.css-dynamic/releases"><img src="https://img.shields.io/github/v/release/KodingKhurram/animate.css-dynamic.svg?style=for-the-badge"></a>
  <a href="https://github.com/KodingKhurram/animate.css-dynamic/blob/main/LICENSE"><img src="https://img.shields.io/github/license/KodingKhurram/animate.css-dynamic.svg?style=for-the-badge"></a>
- <a href="https://animate-dynamic.ga"><img src="https://img.shields.io/website.svg?down_color=red&down_message=down&style=for-the-badge&up_color=green&up_message=up&url=http%3A%2F%2Fshields.io"></a>
+ <a href="https://kodingkhurram.github.io/animate.css-dynamic.demo"><img src="https://img.shields.io/website.svg?down_color=red&down_message=down&style=for-the-badge&up_color=green&up_message=up&url=http%3A%2F%2Fshields.io"></a>
 </p>
 
 <p align="center">
- <img src="https://animate-dynamic.herokuapp.com/img/gifs/animate-css-dynamic_GIF1.gif"><br/>
- <img src="https://animate-dynamic.herokuapp.com/img/gifs/animate-css-dynamic_GIF2.gif">
+ <img src="https://kodingkhurram.github.io/animate.css-dynamic.demo/img/gifs/animate-css-dynamic_GIF1.gif"><br/>
+ <img src="https://kodingkhurram.github.io/animate.css-dynamic.demo/img/gifs/animate-css-dynamic_GIF2.gif">
 </p>
 
 <h2> Overview </h2>
@@ -21,16 +21,12 @@
      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
    />
    <script
-     src = "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
-   </script>
-   <script
      src = "https://cdn.jsdelivr.net/gh/KodingKhurram/animate.css-dynamic@main/animate.min.js">
    </script>
  &lt;/head></pre>
 
 <h2> Documentation and Demo </h2>
- <span> Documentation regarding usage and Demo is in the official <a href="https://animate-dynamic.ga" target="_blank"> website </a></span><br/>
- If the above website is down, visit backup <a href="https://animate-dynamic.herokuapp.com" target="_blank"> website </a>
+ <span> Documentation regarding usage and Demo is in the official <a href="https://kodingkhurram.github.io/animate.css-dynamic.demo" target="_blank"> website </a></span>
 
 <h2> Version and release </h2>
 <ul>
@@ -40,7 +36,8 @@
   <li><a href="https://github.com/KodingKhurram/animate.css-dynamic/tree/v2.10.3/">v2.10.3</a></li>
   <li><a href="https://github.com/KodingKhurram/animate.css-dynamic/tree/v2.13.5/">v2.13.5</a></li>
   <li><a href="https://github.com/KodingKhurram/animate.css-dynamic/tree/v2.16.7/">v2.16.7</a></li>
-  <li><a href="https://github.com/KodingKhurram/animate.css-dynamic/tree/v2.18.8/">v2.18.8</a> {latest}</li>
+  <li><a href="https://github.com/KodingKhurram/animate.css-dynamic/tree/v2.18.8/">v2.18.8</a></li>
+  <li><a href="https://github.com/KodingKhurram/animate.css-dynamic/tree/v3.0.0/">v3.0.0</a> {latest}</li>
 </ul>
 
 <h2> License </h2>
